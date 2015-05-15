@@ -21,3 +21,6 @@ install:
 script:
   - test -z "$(golint ./...)"
   - go test -v ./...
+
+notifications:
+  email: false
