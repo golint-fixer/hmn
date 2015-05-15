@@ -45,7 +45,13 @@ func Load(t interface{}, line string) error {
 func LoadField(t interface{}, field reflect.Value, key, val string) error {
 	// Figure out the kind, then load it up
 	switch field.Kind() {
-	case reflect.Int32, reflect.Int64, reflect.Int:
+	case reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64, reflect.Uint:
+		value, err := strconv.ParseUint(val, 10, 64)
+		if err != nil {
+			return err
+		}
+		field.SetUint(value)
+	case reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64, reflect.Int:
 		value, err := strconv.ParseInt(val, 10, 64)
 		if err != nil {
 			return err
