@@ -60,10 +60,16 @@ func LoadField(t interface{}, field reflect.Value, key, val string) error {
 		field.SetString(val)
 	case reflect.Struct:
 		LoadStruct(t, field, val)
+	case reflect.Invalid:
+		panic(
+			fmt.Sprintf(
+				"Invalid type, check key name\nKey `%s\nGo to github.com/johnmcconnell/hmn/hmm.go to add handling.",
+				key))
 	default:
 		panic(
 			fmt.Sprintf(
-				"Unsure how to handle Kind `%v.\nGo to github.com/johnmcconnell/hmn/hmm.go to add handling.",
+				"Unsure how to handle Kind `%s.\nKind `%s\nGo to github.com/johnmcconnell/hmn/hmm.go to add handling.",
+				field,
 				field.Kind()))
 	}
 	return nil
