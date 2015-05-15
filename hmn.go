@@ -12,6 +12,7 @@ import (
 
 var camelRegex = regexp.MustCompile("[0-9A-Za-z]+")
 
+// Load takes in a struct pointer and loads the values in the string
 func Load(t interface{}, line string) error {
 	// Find the actual value of the object
 	v := reflect.ValueOf(t)
