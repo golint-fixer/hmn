@@ -16,7 +16,7 @@ install:
   - go version
   - go env
   - go get -t -d ./...
-  - go get -u github.com/golang/lint/golint
+  - go get -u golang.org/x/lint/golint
 
 script:
   - test -z "$(golint ./...)"
